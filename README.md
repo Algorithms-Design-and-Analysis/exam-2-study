@@ -20,4 +20,6 @@ No funciona por su enfoque greedy y porque Dijkstra aplica relajamiento a todos 
 
 Se parte desde $A$, se marca como visitado y las distances minimas a $B$ y $C$ quedan como 5 y 6 respectivamente, se pasa a $B$ por ser el arco minimo pero no tiene adyacentes así que se marca como visitado y se pasa a $C$ en donde hay un arco que puede dar una distancia menor de $A$ a $C$, pero no sigue ese camino porque B ya se marcó anteriormente como visidado.
 
+## 3. Un grafo bipartito, es un grafo tal que el conjunto de nodos se puede expresar como dos conjuntos disjuntos, de manera que no hay dos nodos del mismo conjunto que sean adyacentes. Diseñe un algoritmo que reciba un grafo, en su implantación indique si su grafo esta implementado como lista o matriz de adyacencia, y retorne $True$ si el grafo es bipartito y $False$ en otro caso. La complejidad no debe superar $O(VE)$, donde V es el conjunto de nodos y E el conjunto de arcos del grafo.
 
+Algoritmo en is_bipartite.py. Recibe una lista de adyacencia.
