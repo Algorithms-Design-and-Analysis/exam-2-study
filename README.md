@@ -31,3 +31,11 @@ En los dos algoritmos es necario primero identificar los componentes del grafo d
 ## 5. Explique porque el flujo máximo se alcanza cuando la red residual no contiene caminos de aumento.
 
 Por la misma definición de lo que es un camino de aumento, es decir, una camino que aún tiene capacidad disponible desde la fuente hasta el sink por lo que en caso de que ya no sea posible llevar más material hasta el sink, es porque ya no hay más caminos de aumento y vicebersa.
+
+## 6.  Suponga que la red de flujo G contiene la arista (u,v) se crea un nueva red de flujo G’ creando un nuevo vértice x y sustituyendo (u,v) por nuevas aristas (u,x) y (x,v) tal que c(u,x)= (x,v)=c(u,v). Demuestre que un flujo m´aximo en G’ tiene el mismo valor que un flujo máximo en G.
+
+El cambio se representa por la siguiente imagen.
+
+![Alt text](image-1.png)
+
+Como es notable en este ejemplo, el flujo total de la red no cambia porque no cambia el flujo desde el nodo $u$ hasta el $v$. Esto es posible gracias a la definición de lo que es un red de flujo que implica que de cualquier nodo debe salir la misma cantidad de material de la que entra y siempre y cuando del nuevo nada dirija su contenido solo al nodo destino original de la arista, el bottleneck seguirá siendo el mismo entre esa par de nodos y por lo tanto no se encontrará un nuevo camino de aumento y por lo tanto el flujo máximo no cambiará.
