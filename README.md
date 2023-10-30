@@ -23,3 +23,11 @@ Se parte desde $A$, se marca como visitado y las distances minimas a $B$ y $C$ q
 ## 3. Un grafo bipartito, es un grafo tal que el conjunto de nodos se puede expresar como dos conjuntos disjuntos, de manera que no hay dos nodos del mismo conjunto que sean adyacentes. Diseñe un algoritmo que reciba un grafo, en su implantación indique si su grafo esta implementado como lista o matriz de adyacencia, y retorne $True$ si el grafo es bipartito y $False$ en otro caso. La complejidad no debe superar $O(VE)$, donde V es el conjunto de nodos y E el conjunto de arcos del grafo.
 
 Algoritmo en is_bipartite.py. Recibe una lista de adyacencia.
+
+## 4. Un grafo ponderado desconectado no tiene árboles de expansión. Sin embargo, es posible encontrar un bosque de expansión de peso mínimo en un grafo de este tipo. Explique cómo modificar tanto el algoritmo de Kruskal como el algoritmo de Prim para hacer esto.
+
+En los dos algoritmos es necario primero identificar los componentes del grafo desconecato. Tanto para Kruskal como Prim, seguirá funcionando de la misma manera siempre y cuando su condicion de terminacion sea haber recorrido todos los $V$ arcos y no de que la  cantidad de arcos agregados al MST sea $V-1$, ya que en un grafo no conectado esto no siempre será posible. Como el algoritmo siempre escogera el arco minimo, se escogerán independientemente del componente al que pertenezcan, si se quiere mantener el registro de cual es el MST para cada componente, basta con verificar a cual componente pertenecen los nodos implicados en el arco seleccionado y desde ahí realizar las otras validaciones correspondientes como que no se formen ciclo y lo demás propio de cada algoritmo para cada componente.
+
+## 5. Explique porque el flujo máximo se alcanza cuando la red residual no contiene caminos de aumento.
+
+Por la misma definición de lo que es un camino de aumento, es decir, una camino que aún tiene capacidad disponible desde la fuente hasta el sink por lo que en caso de que ya no sea posible llevar más material hasta el sink, es porque ya no hay más caminos de aumento y vicebersa.
