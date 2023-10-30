@@ -27,19 +27,47 @@ import heapq
 https://www.hackerrank.com/challenges/kruskalmstrsub/problem
 """
 
+
+
 def kruskals(g_nodes, g_from, g_to, g_weight):
     
+    # Create the min priority queue with the edges
     edges = []
     for pos in range(len(g_from)):
         heapq.heappush(edges, (g_weight[pos], g_from[pos], g_to[pos]))
         
-    vertexes_added = [False]*g_nodes
+    # Create the structures for disjoint-set operations, initial a vertex is its self parent with 1 children
+    parents = [i for i in range(g_nodes)]
+    childrens = [1 for _ in range(g_nodes)]
     total_weight = 0
-    for _ in range(len(g_from)):
-        edge_weight, initial_vertex, final_Vertex = heapq.heappop(edges)
-        if not vertexes_added[final_Vertex-1]:
-            vertexes_added[initial_vertex-1] = vertexes_added[final_Vertex-1] = True
+
+    #Kruskal algorithm
+    while len(edges) > 0:
+
+        edge_weight, initial_vertex, final_vertex = heapq.heappop(edges)
+
+        # Navigate in the set tree until reach the parent for each vertex
+        initial_vertex_set = parents[initial_vertex-1] 
+        while initial_vertex_set != initial_vertex-1: 
+            initial_vertex = initial_vertex_set + 1
+            initial_vertex_set = parents[initial_vertex_set]
+        final_vertex_set = parents[final_vertex-1]
+        while final_vertex_set != final_vertex-1:
+            final_vertex = final_vertex_set + 1
+            final_vertex_set = parents[final_vertex_set]
+
+        # Normal continuation of algorithm
+        if initial_vertex_set != final_vertex_set:
             total_weight +=edge_weight
+            if childrens[initial_vertex_set] >= childrens[final_vertex_set]:
+                final_vertex_childrens = childrens[final_vertex_set]
+                parents[final_vertex_set] = parents[initial_vertex_set]
+                childrens[parents[final_vertex_set]] += final_vertex_childrens
+            else:
+                initial_vertex_childrens = childrens[initial_vertex_set]
+                parents[initial_vertex_set] = parents[final_vertex_set]
+                childrens[parents[initial_vertex_set]] += initial_vertex_childrens
+            
     return total_weight
 
 if __name__ == '__main__':
